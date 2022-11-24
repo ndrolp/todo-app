@@ -1,5 +1,5 @@
 <template>
-  <div class="newTodo">
+  <div class="new-todo-toggle">
     <input type="checkbox" name="" id="" class="toggle-all" />
     <label for=""></label>
     <CustomInput placeholder="New To-Do" className="new-todo"></CustomInput>
@@ -17,8 +17,9 @@ export default class NewTodo extends Vue {}
 </script>
 
 <style scoped>
-.newTodo {
+.new-todo-toggle {
   position: relative;
+  z-index: 200;
 }
 .toggle-all {
   text-align: center;
@@ -28,6 +29,7 @@ export default class NewTodo extends Vue {}
   height: 34px;
   width: 40px;
   cursor: pointer;
+  z-index: 4;
 }
 
 .toggle-all + label {
@@ -39,6 +41,10 @@ export default class NewTodo extends Vue {}
   left: -15px;
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
+  /* pointer-events: none; */
+}
+
+label {
   pointer-events: none;
 }
 
