@@ -1,22 +1,30 @@
 <template>
-  <div class="todoapp">
+  <div class="todoapp main">
     <h1>todos</h1>
-    <CustomInput placeholder="New To-Do" className="new-todo"></CustomInput>
-    <router-view />
+    <div class="main">
+      <NewTodo></NewTodo>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import CustomInput from "@/components/CustomInput.vue";
+import NewTodo from "@/components/NewTodo.vue";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-  components: { CustomInput },
+  components: { NewTodo },
 })
 export default class MainTemplate extends Vue {}
 </script>
 
 <style>
+.main {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
+}
+
 .todoapp {
   background: #fff;
   margin: 130px 0 40px 0;

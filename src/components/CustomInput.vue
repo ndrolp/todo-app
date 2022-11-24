@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <input
-      :class="className"
-      type="text"
-      :value="value"
-      data-test="inputfield"
-      @keyup.enter="onReturn()"
-      @keyup.escape="onEscape()"
-      :placeholder="placeholder"
-    />
-  </div>
+  <input
+    :class="className"
+    type="text"
+    :value="value"
+    data-test="inputfield"
+    @keyup.enter="onReturn()"
+    @keyup.escape="onEscape()"
+    :placeholder="placeholder"
+  />
 </template>
 
 <script lang="ts">
