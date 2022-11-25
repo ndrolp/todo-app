@@ -2,10 +2,10 @@
   <input
     :class="className"
     type="text"
-    :value="value"
+    v-model="currentValue"
     data-test="inputfield"
-    @keyup.enter="onReturn()"
-    @keyup.escape="onEscape()"
+    @keyup.enter="onReturn"
+    @keydown.esc="onEscape"
     :placeholder="placeholder"
   />
 </template>
@@ -22,18 +22,21 @@ export default class CustomInput extends Vue {
   @Prop({ default: "", type: String })
   className!: string;
 
-  currentValue!: string;
+  currentValue: null | string = null;
+
   mounted() {
     this.currentValue = this.value;
-    // console.log({ VALUE: this.currentValue, PROP: this.value });
   }
 
   onReturn() {
     this.$emit("return", this.currentValue);
+    this.currentValue = "";
   }
 
-  onEscape() {
+  onEscape(e: any) {
+    e.preventDefault();
     this.$emit("escape");
+    this.currentValue = this.value;
   }
 }
 </script>

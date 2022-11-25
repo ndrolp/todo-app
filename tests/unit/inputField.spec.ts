@@ -14,8 +14,5 @@ describe("CustomInput component", () => {
     input.trigger("keyup.enter");
 
     expect(wrapper.emitted()).toHaveProperty("return");
-
-    input.trigger("keyup.escape");
-    expect(wrapper.emitted()).toHaveProperty("escape");
   });
 });

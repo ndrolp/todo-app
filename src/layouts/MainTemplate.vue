@@ -3,19 +3,27 @@
     <h1>todos</h1>
     <div class="main">
       <NewTodo></NewTodo>
-      <router-view />
+      <ItemsList v-if="count > 0" />
+      <Footer v-if="count > 0" />
+      <!-- <router-view /> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import NewTodo from "@/components/NewTodo.vue";
+import ItemsList from "@/components/ItemsList.vue";
+import Footer from "@/layouts/Footer.vue";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-  components: { NewTodo },
+  components: { NewTodo, ItemsList, Footer },
 })
-export default class MainTemplate extends Vue {}
+export default class MainTemplate extends Vue {
+  get count() {
+    return this.$store.state.todos.length;
+  }
+}
 </script>
 
 <style>

@@ -1,8 +1,19 @@
 <template>
   <div class="new-todo-toggle">
-    <input type="checkbox" name="" id="" class="toggle-all" />
+    <input
+      type="checkbox"
+      name=""
+      id=""
+      class="toggle-all"
+      v-model="toggleAll"
+      @change="onToggle"
+    />
     <label for=""></label>
-    <CustomInput placeholder="New To-Do" className="new-todo"></CustomInput>
+    <CustomInput
+      @return="onEnter"
+      placeholder="New To-Do"
+      className="new-todo"
+    ></CustomInput>
   </div>
 </template>
 
@@ -13,7 +24,25 @@ import CustomInput from "@/components/CustomInput.vue";
 @Component({
   components: { CustomInput },
 })
-export default class NewTodo extends Vue {}
+export default class NewTodo extends Vue {
+  onEnter(value: string) {
+    console.log(value);
+    if (value !== "") {
+      this.$store.commit("insertTodo", { completed: false, text: value });
+    }
+  }
+
+  toggleAll = false;
+  mounted() {
+    this.toggleAll =
+      this.$store.state.todos.length ===
+      this.$store.getters.completedTodos.length;
+  }
+
+  onToggle() {
+    this.$store.commit("toggleAll", this.toggleAll);
+  }
+}
 </script>
 
 <style scoped>
